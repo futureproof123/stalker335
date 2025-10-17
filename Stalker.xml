@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+    <Script file="Stalker.lua" />
+    <Frame name="StalkerDropDownMenu" inherits="UIDropDownMenuTemplate" hidden="true">
+        <Size />
+    </Frame>
+    <Frame name="StalkerDialogFrame" parent="UIParent" frameStrata="DIALOG" hidden="true">
+        <Size>
+            <AbsDimension x="250" y="102" />
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER" />
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+            <EdgeSize>
+                <AbsValue val="16" />
+            </EdgeSize>
+            <TileSize>
+                <AbsValue val="32" />
+            </TileSize>
+            <BackgroundInsets>
+                <AbsInset left="4" right="4" top="4" bottom="4" />
+            </BackgroundInsets>
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parentText" inherits="GameFontNormal" justifyH="LEFT">
+                    <Size>
+                        <AbsDimension x="0" y="18" />
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="8" y="-20" />
+                            </Offset>
+                        </Anchor>
+                        <Anchor point="TOPRIGHT">
+                            <Offset>
+                                <AbsDimension x="-8" y="-20" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+				self:SetBackdropColor(0,0,0,1)
+			</OnLoad>
+            <OnShow>
+				PlaySound("igCharacterInfoTab")
+			</OnShow>
+            <OnHide>
+				StalkerDialogFrameEditbox:SetText("")
+				PlaySound("igCharacterInfoClose")
+			</OnHide>
+        </Scripts>
+        <Frames>
+            <Button name="$parentTitle" text="Stalker">
+                <Size>
+                    <AbsDimension x="0" y="22" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="TOPRIGHT" />
+                </Anchors>
+                <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="" tile="true">
+                    <EdgeSize>
+                        <AbsValue val="16" />
+                    </EdgeSize>
+                    <TileSize>
+                        <AbsValue val="32" />
+                    </TileSize>
+                    <BackgroundInsets>
+                        <AbsInset left="4" right="4" top="4" bottom="4" />
+                    </BackgroundInsets>
+                </Backdrop>
+                <Scripts>
+                    <OnLoad>
+        				self:SetBackdropColor(1,0,0,1);
+		        	</OnLoad>
+                </Scripts>
+                <NormalFont style="GameFontHighlightSmall" />
+            </Button>
+            <EditBox name="$parentEditbox" multiLine="false" autoFocus="true">
+                <Size>
+                    <AbsDimension x="238" y="26" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parentText" relativePoint="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-2" />
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="TOPRIGHT" relativeTo="$parentText" relativePoint="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="-2" />
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+                    <EdgeSize>
+                        <AbsValue val="16" />
+                    </EdgeSize>
+                    <TileSize>
+                        <AbsValue val="32" />
+                    </TileSize>
+                    <BackgroundInsets>
+                        <AbsInset left="4" right="4" top="4" bottom="4" />
+                    </BackgroundInsets>
+                </Backdrop>
+                <Scripts>
+                    <OnLoad>
+        				self:SetBackdropColor(0,0,0,.65)
+        			</OnLoad>
+                    <OnEnterPressed>
+                        StalkerDialogFrame.OnOkClick()
+                        StalkerDialogFrame:Hide()
+                    </OnEnterPressed>
+                    <OnEscapePressed>
+                        StalkerDialogFrame:Hide()
+                    </OnEscapePressed>
+                </Scripts>
+                <FontString inherits="GameFontHighlight">
+                    <Size />
+                </FontString>
+                <TextInsets left="6" right="6" top="6" bottom="6" />
+            </EditBox>
+            <Button name="$parentOkButton" inherits="OptionsButtonTemplate" text="ACCEPT">
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="8" y="10" />
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        StalkerDialogFrame.OnOkClick()
+        				StalkerDialogFrame:Hide()
+        			</OnClick>
+                </Scripts>
+            </Button>
+            <Button name="$parentCancelButton" inherits="OptionsButtonTemplate" text="CANCEL">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentOkButton" relativePoint="RIGHT" />
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+        				StalkerDialogFrame:Hide()
+        			</OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+    </Frame>
+    <GameTooltip name="StalkerCombatGameTooltip" inherits="GameTooltipTemplate">
+        <Scripts>
+            <Onload>
+                this:SetOwner(UIParent, "ANCHOR_NONE")
+            </Onload>
+        </Scripts>
+    </GameTooltip>
+</Ui>

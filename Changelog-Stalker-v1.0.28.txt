@@ -1,0 +1,43 @@
+------------------------------------------------------------------------
+r29 | croy9000 | 2009-12-08 21:21:17 +0000 (Tue, 08 Dec 2009) | 1 line
+Changed paths:
+   A /tags/v1.0.28 (from /trunk:28)
+
+Tagging as v1.0.28
+------------------------------------------------------------------------
+r28 | croy9000 | 2009-12-08 21:16:41 +0000 (Tue, 08 Dec 2009) | 4 lines
+Changed paths:
+   M /trunk/Stalker.lua
+   M /trunk/Stalker.toc
+
+Change Log:
+
+Updated toc to 30300.
+
+------------------------------------------------------------------------
+r26 | Croy70 | 2009-11-16 20:30:27 +0000 (Mon, 16 Nov 2009) | 13 lines
+Changed paths:
+   M /trunk
+   M /trunk/.pkgmeta
+   M /trunk/Locales/Stalker-enUS.lua
+   M /trunk/Stalker.lua
+   M /trunk/Stalker.toc
+   M /trunk/StalkerAgent.lua
+   M /trunk/StalkerConfig.lua
+   M /trunk/StalkerMonitor.lua
+   M /trunk/StalkerViewer.lua
+
+Change Log:
+
+* Improvements
+1. Updated to 30200.
+2. Updated to latest external dependencies.
+3. Pressing Esc now closes the Stalker Viewer window.
+4. New option to disable in combat zones (Wintergrasp). Default is true.
+5. New option to show Stalker Monitor on startup.
+
+* Bug Fixes:
+1. Changed Stalker Agent channel to a 20sec post login delay, and changed it to a temporary channel. Hopefully this prevents it from taking over the General channel.
+
+
+------------------------------------------------------------------------

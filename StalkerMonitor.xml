@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+    <Script file="StalkerMonitor.lua" />
+    <Font name="StalkerMonitorFontNormal" font="Interface\AddOns\Stalker\Fonts\ABF.ttf" virtual="true">
+        <Shadow>
+            <Offset>
+                <AbsDimension x="1" y="-1" />
+            </Offset>
+            <Color r="0" g="0" b="0" />
+        </Shadow>
+        <FontHeight>
+            <AbsValue val="12" />
+        </FontHeight>
+        <Color r="1" g="1" b="1" a="1" />
+    </Font>
+    <Font name="StalkerMonitorFontNormalSmall" font="Interface\AddOns\Stalker\Fonts\ABF.ttf" virtual="true">
+        <Shadow>
+            <Offset>
+                <AbsDimension x="1" y="-1" />
+            </Offset>
+            <Color r="0" g="0" b="0" />
+        </Shadow>
+        <FontHeight>
+            <AbsValue val="10" />
+        </FontHeight>
+        <Color r="1" g="1" b="1" a="1" />
+    </Font>
+    <Button name="StalkerMonitorPlayerButtonTemplate" inherits="SecureActionButtonTemplate" virtual="true">
+        <Size x="0" y="22" />
+        <Frames>
+            <Frame setAllPoints="true" name="$parentFrame">
+                <Frames>
+                    <Frame name="$parentTimerFrame">
+                        <Size x="3" y="0" />
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset x="2" y="0" />
+                            </Anchor>
+                            <Anchor point="BOTTOMLEFT">
+                                <Offset x="2" y="0" />
+                            </Anchor>
+                        </Anchors>
+                        <Frames>
+                            <Frame name="$parentBarFrame">
+                                <Anchors>
+                                    <Anchor point="BOTTOMLEFT">
+                                        <Offset x="0" y="2" />
+                                    </Anchor>
+                                    <Anchor point="BOTTOMRIGHT">
+                                        <Offset x="0" y="2" />
+                                    </Anchor>
+                                </Anchors>
+                                <Layers>
+                                    <Layer>
+                                        <Texture file="Interface\AddOns\Stalker\Images\BarTimer" setAllPoints="true">
+                                            <Color r="1" g="1" b="1" a=".7" />
+                                            <TexCoords left="0" right=".1875" top="1" bottom="0" />
+                                        </Texture>
+                                    </Layer>
+                                </Layers>
+                            </Frame>
+                        </Frames>
+                    </Frame>
+                    <Frame name="$parentFlagsFrame">
+                        <Size x="1" y="0" />
+                        <Anchors>
+                            <Anchor point="TOPRIGHT" />
+                            <Anchor point="BOTTOMRIGHT" />
+                        </Anchors>
+                        <Layers>
+                            <Layer>
+                                <Texture name="$parentSlot4" hidden="true">
+                                    <Anchors>
+                                        <Anchor point="TOPRIGHT">
+                                            <Offset x="-1" y="-1" />
+                                        </Anchor>
+                                    </Anchors>
+                                    <Color r="1" g="1" b="1" a=".85" />
+                                </Texture>
+                                <Texture name="$parentSlot3" hidden="true">
+                                    <Anchors>
+                                        <Anchor point="TOPRIGHT">
+                                            <Offset x="-1" y="-11" />
+                                        </Anchor>
+                                    </Anchors>
+                                    <Color r="1" g="1" b="1" a=".85" />
+                                </Texture>
+                                <Texture name="$parentSlot2" hidden="true">
+                                    <Anchors>
+                                        <Anchor point="TOPRIGHT">
+                                            <Offset x="-11" y="-1" />
+                                        </Anchor>
+                                    </Anchors>
+                                    <Color r="1" g="1" b="1" a=".85" />
+                                </Texture>
+                                <Texture name="$parentSlot1" hidden="true">
+                                    <Anchors>
+                                        <Anchor point="TOPRIGHT">
+                                            <Offset x="-11" y="-11" />
+                                        </Anchor>
+                                    </Anchors>
+                                    <Color r="1" g="1" b="1" a=".85" />
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+                    <Frame name="$parentTextFrame">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeTo="$parentTimerFrame" relativePoint="TOPRIGHT" />
+                            <Anchor point="BOTTOMRIGHT" relativeTo="$parentFlagsFrame" relativePoint="BOTTOMLEFT" />
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString name="$parentNameText" inherits="StalkerMonitorFontNormal" justifyH="LEFT" nonspacewrap="false">
+                                    <Size x="0" y="11" />
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT">
+                                            <Offset x="2" y="1" />
+                                        </Anchor>
+                                    </Anchors>
+                                    <Color r=".8" g=".3" b=".22" />
+                                </FontString>
+                                <FontString name="$parentLevelClassText" inherits="StalkerMonitorFontNormalSmall" justifyH="LEFT" nonspacewrap="false">
+                                    <Size x="0" y="9" />
+                                    <Anchors>
+                                        <Anchor point="BOTTOMLEFT">
+                                            <Offset x="2" y="3" />
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                                <FontString name="$parentInfo1Text" inherits="StalkerMonitorFontNormalSmall" justifyH="RIGHT" nonspacewrap="false">
+                                    <Size x="0" y="9" />
+                                    <Anchors>
+                                        <Anchor point="TOPRIGHT">
+                                            <Offset x="-2" y="-1" />
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                                <FontString name="$parentInfo2Text" inherits="StalkerMonitorFontNormalSmall" justifyH="RIGHT" nonspacewrap="false">
+                                    <Size x="0" y="9" />
+                                    <Anchors>
+                                        <Anchor point="BOTTOMRIGHT">
+                                            <Offset x="-2" y="3" />
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+                    <Frame name="$parentFlasher" setAllPoints="true" enableMouse="false" alpha="0">
+                        <Layers>
+                            <Layer level="BACKGROUND">
+                                <Texture file="Interface\AddOns\Stalker\Images\Flash" setAllPoints="true" alphaMode="ADD" />
+                            </Layer>
+                        </Layers>
+                        <Scripts>
+                            <OnLoad>
+                                self.timer = 0
+                            </OnLoad>
+                            <OnUpdate>
+                                StalkerMonitor:OnPlayerButtonFlasherUpdate(self, elapsed)
+                            </OnUpdate>
+                        </Scripts>
+                    </Frame>
+                </Frames>
+            </Frame>
+        </Frames>
+        <Scripts>
+            <OnEnter>
+                Stalker:NodeOnEnter(self)
+                StalkerMonitor:OnMonitorEnter()
+            </OnEnter>
+            <OnLeave>
+                Stalker:NodeOnLeave()
+                StalkerMonitor:OnMonitorLeave()
+            </OnLeave>
+            <OnMouseUp>
+                Stalker:ShowUnitDropDown(self, button)
+            </OnMouseUp>
+        </Scripts>
+        <NormalTexture name="$parentTexture" file="Interface\AddOns\Stalker\Images\Bar" setAllPoints="true"></NormalTexture>
+        <HighlightTexture name="$parentHighlightTexture" file="Interface\AddOns\Stalker\Images\Bar" setAllPoints="true" />
+    </Button>
+    <Frame name="StalkerMonitorFrame" parent="UIParent" frameStrata="MEDIUM" movable="true" toplevel="true" enableMouse="true" resizable="true" hidden="true">
+        <Anchors>
+            <Anchor point="CENTER" />
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+            <EdgeSize>
+                <AbsValue val="16"></AbsValue>
+            </EdgeSize>
+            <TileSize>
+                <AbsValue val="32" />
+            </TileSize>
+            <BackgroundInsets>
+                <AbsInset left="4" right="4" top="4" bottom="4" />
+            </BackgroundInsets>
+        </Backdrop>
+        <Frames>
+            <Frame name="StalkerMonitorHeaderFrame" setAllPoints="true" hidden="true">
+                <Frames>
+                    <Frame name="$parentIcon">
+                        <Size x="44" y="44" />
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset x="-2" y="1" />
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <Texture file="Interface\Minimap\MiniMap-TrackingBorder" setAllPoints="true" />
+                            </Layer>
+                            <Layer level="ARTWORK">
+                                <Texture file="Interface\AddOns\Stalker\Images\Stalker">
+                                    <Size x="17" y="17" />
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT">
+                                            <Offset x="5" y="-4" />
+                                        </Anchor>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+                    <Button name="$parentTitleText" text="STALKER_L_MONITOR">
+                        <Size x="0" y="22" />
+                        <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="TOPRIGHT" />
+                        </Anchors>
+                        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="" tile="true">
+                            <EdgeSize>
+                                <AbsValue val="16" />
+                            </EdgeSize>
+                            <TileSize>
+                                <AbsValue val="32" />
+                            </TileSize>
+                            <BackgroundInsets>
+                                <AbsInset left="4" right="4" top="4" bottom="4" />
+                            </BackgroundInsets>
+                        </Backdrop>
+                        <Scripts>
+                            <OnLoad>
+        				self:SetBackdropColor(1,0,0,1)
+		        	</OnLoad>
+                            <OnMouseDown>
+                        StalkerMonitorFrame:StartMoving()
+		        	</OnMouseDown>
+                            <OnMouseUp>
+                        StalkerMonitorFrame:StopMovingOrSizing()
+                        StalkerMonitor:ResizeFrame()
+                        StalkerMonitor:SaveFrame()
+                        StalkerMonitor:RestoreFrame()
+		        	</OnMouseUp>
+                            <OnLeave>
+                                StalkerMonitor:OnMonitorLeave()
+                            </OnLeave>
+                        </Scripts>
+                        <NormalFont style="GameFontNormalSmall" />
+                    </Button>
+                    <Button name="$parentTopCloseButton" inherits="UIPanelCloseButton">
+                        <Size x="20" y="20" />
+                        <Anchors>
+                            <Anchor point="TOPRIGHT">
+                                <Offset x="-1" y="-1" />
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnLoad>
+        	        			self:SetFrameLevel(StalkerMonitorHeaderFrameTitleText:GetFrameLevel() + 1)
+		        	        </OnLoad>
+                            <OnClick>
+                                StalkerMonitor:Hide()
+                        </OnClick>
+                            <OnLeave>
+                                StalkerMonitor:OnMonitorLeave()
+                            </OnLeave>
+                        </Scripts>
+                    </Button>
+                    <Button name="StalkerMonitorPlayButton">
+                        <Size x="18" y="18" />
+                        <Anchors>
+                            <Anchor point="RIGHT" relativeTo="$parentTopCloseButton" relativePoint="LEFT">
+                                <Offset x="5" y="0" />
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnLoad>
+                        self.timer = 0
+        				self:SetFrameLevel(StalkerMonitorHeaderFrameTitleText:GetFrameLevel() + 1)
+		        	</OnLoad>
+                            <OnUpdate>
+        				StalkerMonitor:OnPlayButtonUpdate(self, elapsed)
+		        	</OnUpdate>
+                            <OnClick>
+                        StalkerMonitor.paused = false
+                        StalkerMonitorPlayButton:Hide()
+                        StalkerMonitorPauseButton:Show()
+                        PlaySound("igCharacterInfoTab")
+                    </OnClick>
+                            <OnLeave>
+                                StalkerMonitor:OnMonitorLeave()
+                            </OnLeave>
+                        </Scripts>
+                        <NormalTexture file="Interface\AddOns\Stalker\Images\Play"></NormalTexture>
+                        <HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD" />
+                    </Button>
+                    <Button name="StalkerMonitorPauseButton">
+                        <Size x="18" y="18" />
+                        <Anchors>
+                            <Anchor point="RIGHT" relativeTo="$parentTopCloseButton" relativePoint="LEFT">
+                                <Offset x="5" y="0" />
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnLoad>
+        				self:SetFrameLevel(StalkerMonitorHeaderFrameTitleText:GetFrameLevel() + 1)
+		        	</OnLoad>
+                            <OnClick>
+                        StalkerMonitor.paused = true
+                        StalkerMonitorPauseButton:Hide()
+                        StalkerMonitorPlayButton:Show()
+                        PlaySound("igCharacterInfoTab")
+                    </OnClick>
+                        </Scripts>
+                        <NormalTexture file="Interface\AddOns\Stalker\Images\Pause"></NormalTexture>
+                        <HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD" />
+                    </Button>
+                </Frames>
+                <Scripts>
+                    <OnShow />
+                    <OnHide />
+                </Scripts>
+            </Frame>
+            <Frame name="StalkerMonitorPlayersFrame">
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset x="0" y="-5" />
+                    </Anchor>
+                    <Anchor point="BOTTOMRIGHT" />
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        StalkerMonitorHeaderFrameIcon:SetFrameLevel(self:GetFrameLevel() + 1)
+                    </OnLoad>
+                </Scripts>
+                <Layers>
+                    <Layer>
+                        <FontString font="GameFontNormal" justifyH="LEFT" name="StalkerMonitorDisabledText">
+                            <Anchors>
+                                <Anchor point="TOP">
+                                    <Offset x="0" y="-5" />
+                                </Anchor>
+                            </Anchors>
+                            <Color r="1" g="1" b="1" a=".25" />
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+        </Frames>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(0,0,0,.95)
+            </OnLoad>
+            <OnShow>
+                PlaySound("igCharacterInfoTab")
+            </OnShow>
+            <OnHide>
+                PlaySound("igMainMenuClose")
+            </OnHide>
+            <OnMouseDown>
+                if (math.abs((GetCursorPosition() / UIParent:GetEffectiveScale()) - self:GetRight()) &lt; 5) or
+                    (math.abs((GetCursorPosition() / UIParent:GetEffectiveScale()) - self:GetLeft()) &lt; 5) then
+                    self:StartSizing()
+                    StalkerMonitor.moving = true
+                end
+            </OnMouseDown>
+            <OnMouseUp>
+                if StalkerMonitor.moving then
+                    StalkerMonitor.moving = false
+                    self:StopMovingOrSizing()
+                    StalkerMonitor:ResizeFrame()
+                    StalkerMonitor:SaveFrame()
+                end
+            </OnMouseUp>
+            <OnEnter>
+                StalkerMonitor:OnMonitorEnter()
+            </OnEnter>
+            <OnLeave>
+                StalkerMonitor:OnMonitorLeave()
+            </OnLeave>
+        </Scripts>
+        <ResizeBounds>
+            <minResize x="152" y="45" />
+        </ResizeBounds>
+    </Frame>
+</Ui>

@@ -1,0 +1,1403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+    <Script file="StalkerViewer.lua" />
+    <FontString name="StalkerViewerStringTemplate" font="GameFontHighlight" justifyH="LEFT" nonspacewrap="false" virtual="true" />
+    <FontString name="StalkerViewerNameTemplate" inherits="StalkerViewerStringTemplate" virtual="true">
+        <Anchors>
+            <Anchor point="TOPLEFT" />
+        </Anchors>
+        <Size x="100" y="15" />
+    </FontString>
+    <FontString name="StalkerViewerLevelTemplate" inherits="StalkerViewerStringTemplate" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="$parentName" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="33" y="15" />
+    </FontString>
+    <FontString name="StalkerViewerClassTemplate" inherits="StalkerViewerStringTemplate" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="$parentLevel" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="54" y="15" />
+    </FontString>
+    <FontString name="StalkerViewerGuildTemplate" inherits="StalkerViewerStringTemplate" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="$parentClass" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="150" y="15" />
+    </FontString>
+    <FontString name="StalkerViewerFlagsTemplate" inherits="StalkerViewerStringTemplate" virtual="true">
+        <Anchors>
+            <Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="45" y="15" />
+    </FontString>
+    <FontString name="StalkerViewerZoneTemplate" inherits="StalkerViewerStringTemplate" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="$parentGuild" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="155" y="15" />
+    </FontString>
+    <FontString name="StalkerViewerSourceTemplate" inherits="StalkerViewerStringTemplate" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="$parentZone" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="100" y="15" />
+    </FontString>
+    <FontString name="StalkerViewerLastTemplate" inherits="StalkerViewerStringTemplate" virtual="true">
+        <Anchors>
+            <Anchor point="RIGHT" relativeTo="$parentFlags" relativePoint="LEFT">
+                <Offset x="-8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="34" y="15" />
+    </FontString>
+    <FontString name="StalkerViewerKillsTemplate" inherits="StalkerViewerStringTemplate" justifyH="CENTER" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="$parentGuild" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="58" y="15" />
+    </FontString>
+    <FontString name="StalkerViewerDeathsTemplate" inherits="StalkerViewerStringTemplate" justifyH="CENTER" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="$parentKills" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="58" y="15" />
+    </FontString>
+    <FontString name="StalkerViewerNoteTemplate" inherits="StalkerViewerStringTemplate" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="$parentDeaths" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="256" y="15" />
+    </FontString>
+    <Button name="StalkerViewerPlayerEventButtonTemplate" virtual="true">
+        <Size x="0" y="15" />
+        <Frames>
+            <Frame setAllPoints="true">
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString name="$parentName" inherits="StalkerViewerNameTemplate"></FontString>
+                        <FontString name="$parentLevel" inherits="StalkerViewerLevelTemplate"></FontString>
+                        <FontString name="$parentClass" inherits="StalkerViewerClassTemplate"></FontString>
+                        <FontString name="$parentGuild" inherits="StalkerViewerGuildTemplate"></FontString>
+                        <FontString name="$parentZone" inherits="StalkerViewerZoneTemplate"></FontString>
+                        <FontString name="$parentSource" inherits="StalkerViewerSourceTemplate"></FontString>
+                        <FontString name="$parentFlags" inherits="StalkerViewerFlagsTemplate"></FontString>
+                        <FontString name="$parentLast" inherits="StalkerViewerLastTemplate"></FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+        </Frames>
+        <Scripts>
+            <OnEnter>
+                Stalker:NodeOnEnter(self)
+            </OnEnter>
+            <OnLeave>
+                Stalker:NodeOnLeave()
+            </OnLeave>
+            <OnMouseUp>
+                Stalker:ShowUnitDropDown(self, button)
+            </OnMouseUp>
+        </Scripts>
+        <HighlightTexture file="Interface\FriendsFrame\UI-FriendsFrame-HighlightBar" />
+    </Button>
+    <Button name="StalkerViewerPlayerHistoryButtonTemplate" virtual="true">
+        <Size x="0" y="15" />
+        <Frames>
+            <Frame setAllPoints="true">
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString name="$parentName" inherits="StalkerViewerNameTemplate"></FontString>
+                        <FontString name="$parentLevel" inherits="StalkerViewerLevelTemplate"></FontString>
+                        <FontString name="$parentClass" inherits="StalkerViewerClassTemplate"></FontString>
+                        <FontString name="$parentGuild" inherits="StalkerViewerGuildTemplate"></FontString>
+                        <FontString name="$parentKills" inherits="StalkerViewerKillsTemplate"></FontString>
+                        <FontString name="$parentDeaths" inherits="StalkerViewerDeathsTemplate"></FontString>
+                        <FontString name="$parentNote" inherits="StalkerViewerNoteTemplate"></FontString>
+                        <FontString name="$parentFlags" inherits="StalkerViewerFlagsTemplate"></FontString>
+                        <FontString name="$parentLast" inherits="StalkerViewerLastTemplate"></FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+        </Frames>
+        <Scripts>
+            <OnEnter>
+                Stalker:NodeOnEnter(self)
+            </OnEnter>
+            <OnLeave>
+                Stalker:NodeOnLeave()
+            </OnLeave>
+            <OnMouseUp>
+                Stalker:ShowUnitDropDown(self, button)
+            </OnMouseUp>
+        </Scripts>
+        <HighlightTexture file="Interface\FriendsFrame\UI-FriendsFrame-HighlightBar" />
+    </Button>
+    <Button name="StalkerViewerGuildButtonTemplate" virtual="true">
+        <Size x="0" y="15" />
+        <Frames>
+            <Frame setAllPoints="true">
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString name="$parentGuild" inherits="StalkerViewerGuildTemplate"></FontString>
+                        <FontString name="$parentKills" inherits="StalkerViewerKillsTemplate"></FontString>
+                        <FontString name="$parentDeaths" inherits="StalkerViewerDeathsTemplate"></FontString>
+                        <FontString name="$parentNote" inherits="StalkerViewerNoteTemplate"></FontString>
+                        <FontString name="$parentFlags" inherits="StalkerViewerFlagsTemplate"></FontString>
+                        <FontString name="$parentLast" inherits="StalkerViewerLastTemplate"></FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+        </Frames>
+        <Scripts>
+            <OnMouseUp>
+                Stalker:ShowUnitDropDown(self, button)
+            </OnMouseUp>
+        </Scripts>
+        <HighlightTexture file="Interface\FriendsFrame\UI-FriendsFrame-HighlightBar" />
+    </Button>
+    <Button name="StalkerViewerSortButtonTemplate" virtual="true">
+        <ButtonText>
+            <Anchors>
+                <Anchor point="LEFT">
+                    <Offset>
+                        <AbsDimension x="0" y="0" />
+                    </Offset>
+                </Anchor>
+            </Anchors>
+        </ButtonText>
+        <NormalFont style="GameFontNormalLarge" />
+        <Scripts>
+            <OnClick>
+                StalkerViewer:SetSortColumn(self:GetName())
+            </OnClick>
+        </Scripts>
+    </Button>
+    <Button name="StalkerViewerPlayersNameSortTemplate" inherits="StalkerViewerSortButtonTemplate" text="NAME" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" />
+        </Anchors>
+        <Size x="100" y="15"></Size>
+    </Button>
+    <Button name="StalkerViewerPlayersLevelSortTemplate" inherits="StalkerViewerSortButtonTemplate" text="LEVEL_ABBR" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="StalkerViewerPlayersNameSort" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="33" y="15"></Size>
+    </Button>
+    <Button name="StalkerViewerPlayersClassSortTemplate" inherits="StalkerViewerSortButtonTemplate" text="CLASS" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="StalkerViewerPlayersLevelSort" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="54" y="15"></Size>
+    </Button>
+    <Button name="StalkerViewerPlayersGuildSortTemplate" inherits="StalkerViewerSortButtonTemplate" text="GUILD" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="StalkerViewerPlayersClassSort" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="150" y="15"></Size>
+    </Button>
+    <Button name="StalkerViewerPlayersKillsSortTemplate" inherits="StalkerViewerSortButtonTemplate" text="KILLS" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="StalkerViewerPlayersGuildSort" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="58" y="15"></Size>
+        <ButtonText justifyH="CENTER" />
+    </Button>
+    <Button name="StalkerViewerPlayersDeathsSortTemplate" inherits="StalkerViewerSortButtonTemplate" text="DEATHS" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="StalkerViewerPlayersKillsSort" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="58" y="15"></Size>
+        <ButtonText justifyH="CENTER" />
+    </Button>
+    <Button name="StalkerViewerPlayersNoteSortTemplate" inherits="StalkerViewerSortButtonTemplate" text="LABEL_NOTE" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="StalkerViewerPlayersDeathsSort" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="256" y="15"></Size>
+    </Button>
+    <Button name="StalkerViewerZoneSortTemplate" inherits="StalkerViewerSortButtonTemplate" text="ZONE" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="StalkerViewerPlayersGuildSort" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="155" y="15"></Size>
+    </Button>
+    <Button name="StalkerViewerSourceSortTemplate" inherits="StalkerViewerSortButtonTemplate" text="STALKER_L_SOURCE" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="StalkerViewerZoneSort" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="100" y="15"></Size>
+    </Button>
+    <Button name="StalkerViewerFlagsSortTemplate" inherits="StalkerViewerSortButtonTemplate" text="STALKER_L_FLAGS" virtual="true">
+        <Anchors>
+            <Anchor point="RIGHT">
+                <Offset x="-29" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="8" y="15"></Size>
+    </Button>
+    <Button name="StalkerViewerLastSortTemplate" inherits="StalkerViewerSortButtonTemplate" text="STALKER_L_LAST" virtual="true">
+        <Anchors>
+            <Anchor point="RIGHT" relativeTo="StalkerViewerFlagsSort" relativePoint="LEFT">
+                <Offset x="-8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="34" y="15"></Size>
+    </Button>
+    <Button name="StalkerViewerGuildsGuildSortTemplate" inherits="StalkerViewerSortButtonTemplate" text="GUILD" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT"/>
+        </Anchors>
+        <Size x="150" y="15"></Size>
+    </Button>
+    <Button name="StalkerViewerGuildsKillsSortTemplate" inherits="StalkerViewerSortButtonTemplate" text="KILLS" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="StalkerViewerGuildsGuildSort" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="58" y="15"></Size>
+        <ButtonText justifyH="CENTER" />
+    </Button>
+    <Button name="StalkerViewerGuildsDeathsSortTemplate" inherits="StalkerViewerSortButtonTemplate" text="DEATHS" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="StalkerViewerGuildsKillsSort" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="58" y="15"></Size>
+        <ButtonText justifyH="CENTER" />
+    </Button>
+    <Button name="StalkerViewerGuildsNoteSortTemplate" inherits="StalkerViewerSortButtonTemplate" text="LABEL_NOTE" virtual="true">
+        <Anchors>
+            <Anchor point="LEFT" relativeTo="StalkerViewerGuildsDeathsSort" relativePoint="RIGHT">
+                <Offset x="8" y="0" />
+            </Anchor>
+        </Anchors>
+        <Size x="256" y="15"></Size>
+    </Button>
+    <Frame name="StalkerViewerFrame" parent="UIParent" frameStrata="MEDIUM" movable="true" toplevel="true" enableMouse="true" hidden="true">
+        <Size x="900" y="604" />
+        <Anchors>
+            <Anchor point="CENTER" />
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+            <EdgeSize>
+                <AbsValue val="16"></AbsValue>
+            </EdgeSize>
+            <TileSize>
+                <AbsValue val="32" />
+            </TileSize>
+            <BackgroundInsets>
+                <AbsInset left="4" right="4" top="4" bottom="4" />
+            </BackgroundInsets>
+        </Backdrop>
+        <Layers>
+            <Layer>
+                <FontString name="$parentFilterText" font="GameFontNormal" text="STALKER_L_FILTER">
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT">
+                            <Offset x="12" y="14" />
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+                <FontString name="$parentShowOnlyText" font="GameFontNormal" text="STALKER_L_SHOWONLY">
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT">
+                            <Offset x="260" y="14" />
+                        </Anchor>
+                    </Anchors>
+                    <Color r="1" g="1" b="1" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Frame name="$parentIcon">
+                <Size x="70" y="70" />
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset x="-5" y="4" />
+                    </Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <Texture file="Interface\Minimap\MiniMap-TrackingBorder" setAllPoints="true" />
+                    </Layer>
+                    <Layer level="ARTWORK">
+                        <Texture file="Interface\AddOns\Stalker\Images\Stalker">
+                            <Size x="22" y="22" />
+                            <Anchors>
+                                <Anchor point="TOPLEFT">
+                                    <Offset x="10" y="-9" />
+                                </Anchor>
+                            </Anchors>
+                            <TexCoords left=".1" right=".9" top=".1" bottom=".9" />
+                        </Texture>
+                    </Layer>
+                </Layers>
+            </Frame>
+            <Button name="$parentTitle" text="STALKER_L_VIEWER">
+                <Size x="0" y="32" />
+                <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="TOPRIGHT" />
+                </Anchors>
+                <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="" tile="true">
+                    <EdgeSize>
+                        <AbsValue val="16" />
+                    </EdgeSize>
+                    <TileSize>
+                        <AbsValue val="32" />
+                    </TileSize>
+                    <BackgroundInsets>
+                        <AbsInset left="4" right="4" top="4" bottom="4" />
+                    </BackgroundInsets>
+                </Backdrop>
+                <Scripts>
+                    <OnLoad>
+                        self:SetBackdropColor(1,0,0,1)
+                    </OnLoad>
+                    <OnMouseDown>
+                        StalkerViewerFrame:StartMoving()
+                    </OnMouseDown>
+                    <OnMouseUp>
+                        StalkerViewerFrame:StopMovingOrSizing()
+                    </OnMouseUp>
+                </Scripts>
+                <NormalFont style="GameFontNormalHuge" />
+            </Button>
+            <Button name="$parentTopCloseButton" inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT" />
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        self:SetFrameLevel(StalkerViewerFrameTitle:GetFrameLevel() + 1)
+                    </OnLoad>
+                    <OnClick>
+                        StalkerViewer:Hide()
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Frame name="StalkerViewerTabFrame">
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset x="8" y="-34" />
+                    </Anchor>
+                    <Anchor point="BOTTOMRIGHT">
+                        <Offset x="-8" y="34" />
+                    </Anchor>
+                </Anchors>
+                <Frames>
+                    <Button name="$parentTab1" inherits="TabButtonTemplate" text="TUTORIAL_TITLE19">
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset x="8" y="8" />
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnLoad>
+                                PanelTemplates_TabResize(self, 0)
+                            </OnLoad>
+                            <OnClick>
+                                PanelTemplates_SetTab(self:GetParent(), 1)
+                                StalkerViewer:UpdateView()
+                                StalkerViewer:Recalulate()
+                                PlaySound("igCharacterInfoTab")
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button name="$parentTab2" inherits="TabButtonTemplate" text="STALKER_L_GUILDS">
+                        <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentTab1" relativePoint="RIGHT" />
+                        </Anchors>
+                        <Scripts>
+                            <OnLoad>
+                                PanelTemplates_TabResize(self, 0)
+                            </OnLoad>
+                            <OnClick>
+                                PanelTemplates_SetTab(self:GetParent(), 2)
+                                StalkerViewer:UpdateView()
+                                StalkerViewer:Recalulate()
+                                PlaySound("igCharacterInfoTab")
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button name="StalkerViewerRefreshButton" inherits="OptionsButtonTemplate" text="REFRESH">
+                        <Anchors>
+                            <Anchor point="TOP" />
+                        </Anchors>
+                        <Scripts>
+                            <OnLoad>
+                                self.timer = 0
+                            </OnLoad>
+                            <OnUpdate>
+                                StalkerViewer:OnRefreshButtonUpdate(self, elapsed)
+                            </OnUpdate>
+                            <OnClick>
+                                PlaySound("igMainMenuOptionCheckBoxOn")
+                                StalkerViewer:Recalulate()
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button name="StalkerViewerTypeToggleButton">
+                        <Size x="32" y="32" />
+                        <Anchors>
+                            <Anchor point="TOPRIGHT">
+                                <Offset>
+                                    <AbsDimension x="2" y="6" />
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick>
+                                StalkerViewer:TogglePlayerView()
+                                PlaySound("igMainMenuOptionCheckBoxOn")
+                            </OnClick>
+                        </Scripts>
+                        <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up" />
+                        <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down" />
+                        <DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled" />
+                        <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD" />
+                        <ButtonText>
+                            <Anchors>
+                                <Anchor point="RIGHT">
+                                    <Offset>
+                                        <AbsDimension x="-32" y="0" />
+                                    </Offset>
+                                </Anchor>
+                            </Anchors>
+                        </ButtonText>
+                        <NormalFont style="GameFontNormalSmall" />
+                        <PushedTextOffset>
+                            <AbsDimension x="0" y="0" />
+                        </PushedTextOffset>
+                    </Button>
+                    <Frame name="$parentTabContentFrame">
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset x="0" y="-22" />
+                            </Anchor>
+                            <Anchor point="BOTTOMRIGHT"></Anchor>
+                        </Anchors>
+                        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+                            <EdgeSize>
+                                <AbsValue val="16"></AbsValue>
+                            </EdgeSize>
+                            <TileSize>
+                                <AbsValue val="32" />
+                            </TileSize>
+                            <BackgroundInsets>
+                                <AbsInset left="4" right="4" top="4" bottom="4" />
+                            </BackgroundInsets>
+                        </Backdrop>
+                        <Scripts>
+                            <OnLoad>
+                                self:SetBackdropColor(0,0,0,.65)
+                            </OnLoad>
+                        </Scripts>
+                        <Frames>
+                            <ScrollFrame name="$parentScrollFrame" inherits="FauxScrollFrameTemplate">
+                                <Anchors>
+                                    <Anchor point="TOPLEFT">
+                                        <Offset x="0" y="-24" />
+                                    </Anchor>
+                                    <Anchor point="BOTTOMRIGHT">
+                                        <Offset x="-30" y="10" />
+                                    </Anchor>
+                                </Anchors>
+                                <Scripts>
+                                    <OnVerticalScroll>
+                                        FauxScrollFrame_OnVerticalScroll(self, offset, 15, StalkerViewer.Refresh)
+                                    </OnVerticalScroll>
+                                </Scripts>
+                            </ScrollFrame>
+                            <Frame name="StalkerViewerPlayerHistoryFrame" setAllPoints="true">
+                                <Frames>
+                                    <Frame name="$parentHeaderFrame">
+                                        <Size x="0" y="18" />
+                                        <Anchors>
+                                            <Anchor point="TOPLEFT">
+                                                <Offset x="8" y="-8" />
+                                            </Anchor>
+                                            <Anchor point="TOPRIGHT">
+                                                <Offset x="-38" y="-8" />
+                                            </Anchor>
+                                        </Anchors>
+                                        <Frames>
+                                            <Button name="StalkerViewerPlayersNameSort" inherits="StalkerViewerPlayersNameSortTemplate"/>
+                                            <Button name="StalkerViewerPlayersLevelSort" inherits="StalkerViewerPlayersLevelSortTemplate"/>
+                                            <Button name="StalkerViewerPlayersClassSort" inherits="StalkerViewerPlayersClassSortTemplate"/>
+                                            <Button name="StalkerViewerPlayersGuildSort" inherits="StalkerViewerPlayersGuildSortTemplate"/>
+                                            <Button name="StalkerViewerPlayersKillsSort" inherits="StalkerViewerPlayersKillsSortTemplate"/>
+                                            <Button name="StalkerViewerPlayersDeathsSort" inherits="StalkerViewerPlayersDeathsSortTemplate"/>
+                                            <Button name="StalkerViewerPlayersNoteSort" inherits="StalkerViewerPlayersNoteSortTemplate"/>
+                                            <Button name="StalkerViewerFlagsSort" inherits="StalkerViewerFlagsSortTemplate"/>
+                                            <Button name="StalkerViewerLastSort" inherits="StalkerViewerLastSortTemplate"/>
+                                        </Frames>
+                                    </Frame>
+                                    <Frame name="$parentListFrame">
+                                        <Anchors>
+                                            <Anchor point="TOPLEFT">
+                                                <Offset x="0" y="-24" />
+                                            </Anchor>
+                                            <Anchor point="BOTTOMRIGHT">
+                                                <Offset x="-30" y="10" />
+                                            </Anchor>
+                                        </Anchors>
+                                        <Frames>
+                                            <Button name="$parentLine1" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT">
+                                                        <Offset x="8" y="0" />
+                                                    </Anchor>
+                                                    <Anchor point="TOPRIGHT">
+                                                        <Offset x="-8" y="0" />
+                                                    </Anchor>
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine2" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine1" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine3" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine2" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine4" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine3" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine5" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine4" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine6" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine5" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine7" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine6" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine8" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine7" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine9" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine8" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine10" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine9" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine11" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine10" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine12" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine11" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine13" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine12" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine14" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine13" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine15" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine14" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine16" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine15" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine17" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine16" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine18" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine17" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine19" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine18" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine20" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine19" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine21" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine20" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine22" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine21" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine23" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine22" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine24" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine23" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine25" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine24" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine26" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine25" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine27" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine26" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine28" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine27" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine29" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine28" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine30" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine29" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine31" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine30" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine32" inherits="StalkerViewerPlayerHistoryButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine31" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                        </Frames>
+                                    </Frame>
+                                </Frames>
+                            </Frame>
+                            <Frame name="StalkerViewerPlayerEventFrame" setAllPoints="true" hidden="true">
+                                <Frames>
+                                    <Frame name="$parentHeaderFrame">
+                                        <Size x="0" y="18" />
+                                        <Anchors>
+                                            <Anchor point="TOPLEFT">
+                                                <Offset x="8" y="-8" />
+                                            </Anchor>
+                                            <Anchor point="TOPRIGHT">
+                                                <Offset x="-38" y="-8" />
+                                            </Anchor>
+                                        </Anchors>
+                                        <Frames>
+                                            <Button name="StalkerViewerPlayersNameSort" inherits="StalkerViewerPlayersNameSortTemplate"/>
+                                            <Button name="StalkerViewerPlayersLevelSort" inherits="StalkerViewerPlayersLevelSortTemplate"/>
+                                            <Button name="StalkerViewerPlayersClassSort" inherits="StalkerViewerPlayersClassSortTemplate"/>
+                                            <Button name="StalkerViewerPlayersGuildSort" inherits="StalkerViewerPlayersGuildSortTemplate"/>
+                                            <Button name="StalkerViewerZoneSort" inherits="StalkerViewerZoneSortTemplate"/>
+                                            <Button name="StalkerViewerSourceSort" inherits="StalkerViewerSourceSortTemplate"/>
+                                            <Button name="StalkerViewerFlagsSort" inherits="StalkerViewerFlagsSortTemplate"/>
+                                            <Button name="StalkerViewerLastSort" inherits="StalkerViewerLastSortTemplate"/>
+                                        </Frames>
+                                    </Frame>
+                                    <Frame name="$parentListFrame">
+                                        <Anchors>
+                                            <Anchor point="TOPLEFT">
+                                                <Offset x="0" y="-24" />
+                                            </Anchor>
+                                            <Anchor point="BOTTOMRIGHT">
+                                                <Offset x="-30" y="10" />
+                                            </Anchor>
+                                        </Anchors>
+                                        <Frames>
+                                            <Button name="$parentLine1" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT">
+                                                        <Offset x="8" y="0" />
+                                                    </Anchor>
+                                                    <Anchor point="TOPRIGHT">
+                                                        <Offset x="-8" y="0" />
+                                                    </Anchor>
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine2" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine1" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine3" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine2" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine4" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine3" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine5" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine4" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine6" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine5" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine7" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine6" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine8" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine7" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine9" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine8" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine10" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine9" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine11" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine10" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine12" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine11" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine13" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine12" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine14" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine13" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine15" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine14" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine16" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine15" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine17" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine16" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine18" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine17" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine19" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine18" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine20" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine19" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine21" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine20" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine22" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine21" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine23" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine22" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine24" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine23" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine25" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine24" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine26" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine25" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine27" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine26" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine28" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine27" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine29" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine28" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine30" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine29" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine31" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine30" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine32" inherits="StalkerViewerPlayerEventButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine31" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                        </Frames>
+                                    </Frame>
+                                </Frames>
+                            </Frame>
+                            <Frame name="StalkerViewerGuildFrame" setAllPoints="true" hidden="true">
+                                <Frames>
+                                    <Frame name="$parentHeaderFrame">
+                                        <Size x="0" y="18" />
+                                        <Anchors>
+                                            <Anchor point="TOPLEFT">
+                                                <Offset x="8" y="-8" />
+                                            </Anchor>
+                                            <Anchor point="TOPRIGHT">
+                                                <Offset x="-38" y="-8" />
+                                            </Anchor>
+                                        </Anchors>
+                                        <Frames>
+                                            <Button name="StalkerViewerGuildsGuildSort" inherits="StalkerViewerGuildsGuildSortTemplate"/>
+                                            <Button name="StalkerViewerGuildsKillsSort" inherits="StalkerViewerGuildsKillsSortTemplate"/>
+                                            <Button name="StalkerViewerGuildsDeathsSort" inherits="StalkerViewerGuildsDeathsSortTemplate"/>
+                                            <Button name="StalkerViewerGuildsNoteSort" inherits="StalkerViewerGuildsNoteSortTemplate"/>
+                                            <Button name="StalkerViewerFlagsSort" inherits="StalkerViewerFlagsSortTemplate"/>
+                                            <Button name="StalkerViewerLastSort" inherits="StalkerViewerLastSortTemplate"/>
+                                        </Frames>
+                                    </Frame>
+                                    <Frame name="$parentListFrame">
+                                        <Anchors>
+                                            <Anchor point="TOPLEFT">
+                                                <Offset x="0" y="-24" />
+                                            </Anchor>
+                                            <Anchor point="BOTTOMRIGHT">
+                                                <Offset x="-30" y="10" />
+                                            </Anchor>
+                                        </Anchors>
+                                        <Frames>
+                                            <Button name="$parentLine1" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT">
+                                                        <Offset x="8" y="0" />
+                                                    </Anchor>
+                                                    <Anchor point="TOPRIGHT">
+                                                        <Offset x="-8" y="0" />
+                                                    </Anchor>
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine2" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine1" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine3" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine2" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine4" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine3" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine5" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine4" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine6" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine5" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine7" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine6" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine8" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine7" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine9" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine8" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine10" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine9" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine11" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine10" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine12" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine11" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine13" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine12" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine14" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine13" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine15" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine14" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine16" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine15" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine17" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine16" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine18" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine17" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine19" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine18" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine20" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine19" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine21" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine20" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine22" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine21" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine23" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine22" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine24" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine23" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine25" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine24" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine26" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine25" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine27" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine26" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine28" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine27" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine29" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine28" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine30" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine29" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine31" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine30" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                            <Button name="$parentLine32" inherits="StalkerViewerGuildButtonTemplate">
+                                                <Anchors>
+                                                    <Anchor point="TOPLEFT" relativeTo="$parentLine31" relativePoint="BOTTOMLEFT" />
+                                                    <Anchor point="RIGHT" relativeTo="$parentLine1" />
+                                                </Anchors>
+                                            </Button>
+                                        </Frames>
+                                    </Frame>
+                                </Frames>
+                            </Frame>
+                        </Frames>
+                        <Scripts>
+                            <OnLoad>
+                                self:SetBackdropColor(0,0,0,.5)
+                                self:SetFrameLevel(self:GetParent():GetFrameLevel() - 1)
+                            </OnLoad>
+                        </Scripts>
+                    </Frame>
+                </Frames>
+                <Scripts>
+                    <OnLoad>
+                        PanelTemplates_SetNumTabs(self, 2)
+                        PanelTemplates_SetTab(self, 1)
+                    </OnLoad>
+                </Scripts>
+            </Frame>
+            <EditBox name="StalkerViewerFilterBox" autoFocus="false" multiLine="false">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentFilterText" relativePoint="RIGHT" />
+                </Anchors>
+                <Size>
+                    <AbsDimension x="200" y="26" />
+                </Size>
+                <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+                    <EdgeSize>
+                        <AbsValue val="16"></AbsValue>
+                    </EdgeSize>
+                    <TileSize>
+                        <AbsValue val="32" />
+                    </TileSize>
+                    <BackgroundInsets>
+                        <AbsInset left="4" right="4" top="4" bottom="4" />
+                    </BackgroundInsets>
+                </Backdrop>
+                <Scripts>
+                    <OnLoad>
+                        self:SetBackdropColor(0,0,0,.65)
+                    </OnLoad>
+                    <OnEnterPressed>
+                        self:ClearFocus()
+                    </OnEnterPressed>
+                    <OnEscapePressed>
+                        self:ClearFocus()
+                    </OnEscapePressed>
+                    <OnTextChanged>
+                        StalkerViewer:Filter()
+                    </OnTextChanged>
+                </Scripts>
+                <FontString inherits="GameFontHighlight">
+                    <Size />
+                </FontString>
+                <TextInsets left="6" right="6" top="6" bottom="6" />
+            </EditBox>
+            <CheckButton name="StalkerViewerKosCheckbox" inherits="OptionsCheckButtonTemplate">
+                <Size>
+                    <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentShowOnlyText" relativePoint="RIGHT">
+                        <Offset x="4" y="-2" />
+                    </Anchor>
+                </Anchors>
+                <HitRectInsets>
+                    <AbsInset left="0" right="0" top="0" bottom="0" />
+                </HitRectInsets>
+                <Scripts>
+                    <OnClick>
+                        PlaySound("igMainMenuOptionCheckBoxOn")
+                        StalkerViewer:Filter()
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="StalkerViewerTrackCheckbox" inherits="OptionsCheckButtonTemplate">
+                <Size>
+                    <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="StalkerViewerKosCheckboxText" relativePoint="RIGHT">
+                        <Offset x="12" y="-1" />
+                    </Anchor>
+                </Anchors>
+                <HitRectInsets>
+                    <AbsInset left="0" right="0" top="0" bottom="0" />
+                </HitRectInsets>
+                <Scripts>
+                    <OnClick>
+                        PlaySound("igMainMenuOptionCheckBoxOn")
+                        StalkerViewer:Filter()
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="StalkerViewerKillsDeathsCheckbox" inherits="OptionsCheckButtonTemplate">
+                <Size>
+                    <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="StalkerViewerTrackCheckboxText" relativePoint="RIGHT">
+                        <Offset x="12" y="-1" />
+                    </Anchor>
+                </Anchors>
+                <HitRectInsets>
+                    <AbsInset left="0" right="0" top="0" bottom="0" />
+                </HitRectInsets>
+                <Scripts>
+                    <OnClick>
+                        PlaySound("igMainMenuOptionCheckBoxOn")
+                        StalkerViewer:Filter()
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <CheckButton name="StalkerViewerNoteCheckbox" inherits="OptionsCheckButtonTemplate">
+                <Size>
+                    <AbsDimension x="24" y="24" />
+                </Size>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="StalkerViewerKillsDeathsCheckboxText" relativePoint="RIGHT">
+                        <Offset x="12" y="-1" />
+                    </Anchor>
+                </Anchors>
+                <HitRectInsets>
+                    <AbsInset left="0" right="0" top="0" bottom="0" />
+                </HitRectInsets>
+                <Scripts>
+                    <OnClick>
+                        PlaySound("igMainMenuOptionCheckBoxOn")
+                        StalkerViewer:Filter()
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+            <Button name="$parentCloseButton" inherits="OptionsButtonTemplate" text="CLOSE">
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT">
+                        <Offset x="-12" y="10" />
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        StalkerViewer:Hide()
+                    </OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropColor(0,0,0,.95)
+            </OnLoad>
+            <OnShow>
+                PlaySound("igCharacterInfoTab")
+            </OnShow>
+            <OnHide>
+                PlaySound("igMainMenuClose")
+            </OnHide>
+        </Scripts>
+    </Frame>
+</Ui>

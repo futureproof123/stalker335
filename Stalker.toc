@@ -1,0 +1,26 @@
+## Interface: 30300
+## Title: Stalker
+## Notes: Addon for detecting, managing, and tracking hostile players
+## Author: Croy9000
+## Version: 1.0
+## SavedVariables: StalkerDB
+## OptionalDeps: Ace3
+## X-Embeds: Ace3
+## X-Category: Interface Enhancements
+## X-Curse-Packaged-Version: v1.0.28
+## X-Curse-Project-Name: Stalker
+## X-Curse-Project-ID: stalker
+## X-Curse-Repository-ID: wow/stalker/mainline
+
+embeds.xml
+
+Locales\Stalker-enUS.lua
+
+StalkerSpells.lua
+Stalker.xml
+StalkerConfig.lua
+StalkerData.lua
+StalkerAlerts.lua
+StalkerViewer.xml
+StalkerMonitor.xml
+StalkerAgent.lua
